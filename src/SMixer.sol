@@ -38,12 +38,12 @@ contract SMixer {
     function _recoverSecret(
         Secrets[2] calldata _secrets
     ) internal pure returns (uint256 secret) {
-        int256 l0 = int(_secrets[0].y * _secrets[1].x) /
-            int(_secrets[1].x) -
-            int(_secrets[0].x);
-        int256 l1 = int(_secrets[1].y * _secrets[0].x) /
+        int256 l0 = (int(_secrets[0].y * _secrets[1].x) * 1) /
             int(_secrets[0].x) -
             int(_secrets[1].x);
+        int256 l1 = (int(_secrets[1].y * _secrets[0].x) * -1) /
+            int(_secrets[1].x) -
+            int(_secrets[0].x);
 
         return uint256(l0 + l1);
     }
