@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+import {Secrets} from "./IMixer.sol";
+
 contract SMixer {
     error InvalidValueSize();
     error InvalidSecret();
@@ -9,11 +11,6 @@ contract SMixer {
     event Deposit(address depositer, uint256 value);
 
     mapping(bytes32 => uint256) internal withdrawHashMapping;
-
-    struct Secrets {
-        uint256 x;
-        uint256 y;
-    }
 
     modifier checkSendSize() {
         if (
