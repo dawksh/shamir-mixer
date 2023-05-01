@@ -17,8 +17,8 @@ contract SMixer {
 
     modifier checkSendSize() {
         if (
-            msg.value != 0.01 ether ||
-            msg.value != 0.1 ether ||
+            msg.value != 0.01 ether &&
+            msg.value != 0.1 ether &&
             msg.value != 1 ether
         ) revert InvalidValueSize();
         _;
