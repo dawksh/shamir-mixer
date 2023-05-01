@@ -29,7 +29,7 @@ contract SMixer {
         emit Deposit(msg.sender, msg.value);
     }
 
-    function withdraw(Secrets[2] memory secrets) external {
+    function withdraw(Secrets[2] calldata secrets) external {
         uint256 secretKey = _recoverSecret(secrets);
         bytes32 _hash = keccak256(abi.encodePacked(msg.sender, secretKey));
         uint256 amount = withdrawHashMapping[_hash];
@@ -39,7 +39,7 @@ contract SMixer {
     }
 
     function _recoverSecret(
-        Secrets[2] memory _secrets
+        Secrets[2] calldata _secrets
     ) internal pure returns (uint256 secret) {
         int256 l0 = int(_secrets[0].y * _secrets[1].x) /
             int(_secrets[1].x - _secrets[0].x);
